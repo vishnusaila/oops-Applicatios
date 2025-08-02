@@ -1,0 +1,46 @@
+
+class Movie:
+    def __init__(self, title, hero, heroine):
+        self.title = title
+        self.hero = hero
+        self.heroine = heroine
+
+    def display_details(self): 
+        print(f"\n Movie: {self.title}")
+        print(f" Hero: {self.hero}")
+        print(f" Heroine: {self.heroine}")
+class HitMovie(Movie):
+    def __init__(self, title, hero, heroine, rating):
+        super().__init__(title, hero, heroine)
+        self.rating = rating
+
+    def display_details(self):
+        super().display_details()
+        print(f" IMDB Rating: {self.rating}/10")
+
+
+movie_list = []
+
+print("*****Welcome to Movie Info App***** ")
+while True:
+    title = input("Enter Movie Title: ")
+    hero = input("Enter Hero Name: ")
+    heroine = input("Enter Heroine Name: ")
+
+    is_hit = input("Is it a hit movie? (yes/no): ")
+    if is_hit.lower() == "yes":
+        rating = float(input("Enter IMDB Rating: "))
+        movie = HitMovie(title, hero, heroine, rating)
+    else:
+        movie = Movie(title, hero, heroine)
+
+    movie_list.append(movie)
+    print("##### Movie Added Successfully!#####\n")
+
+    cont = input("Do you want to add another movie? (yes/no): ")
+    if cont.lower() != "yes":
+        break
+
+print("\n" + "="*10, " All Movie Details ", "="*10)
+for m in movie_list:
+    m.display_details()
