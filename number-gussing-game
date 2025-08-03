@@ -1,0 +1,34 @@
+#number guessing game
+import random as r
+class Game: 
+    def start(self,user1,user2):
+        self.user1=user1
+        self.user2=user2
+        while True:
+            self.ran=r.randint(0,9)
+            self.user1=int(input("Player-1 enter your value "))
+            self.user2=int(input("Player-2 enter your value "))
+            if self.ran==self.user1:
+                print("###won the game by player1###")
+                break
+            if self.ran==self.user2:
+                print("###won the game by player2###")
+                print(self.ran)
+                break
+            else:
+                print("play again")
+obj=Game()
+while True:
+    print("want to play:")
+    print("play [1]\n Exit [0]")
+    option=int(input())
+    if option==1:
+        user1=int(input("Player-1 enter your value "))
+        user2=int(input("Player-2 enter your valuer "))
+         
+        obj.start(user1,user2)
+    if option==0:
+        break
+    if option!=0 and option!=1:
+        print("*****please enter valid option*****")
+        
