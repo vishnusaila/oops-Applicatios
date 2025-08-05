@@ -1,0 +1,46 @@
+# Calculator using OOP
+class Calculator:
+    def __init__(self, current=0):
+        self.current = current
+
+    def addition(self, value):
+        self.current += value
+        print("Value:", self.current)
+
+    def subtraction(self, value):
+        self.current -= value
+        print("Value:", self.current)
+
+    def multiplication(self, value):
+        self.current *= value
+        print("Value:", self.current)
+
+    def division(self, value):
+        try:
+            self.current /= value
+            print("Value:", self.current)
+        except ZeroDivisionError:
+            print("Cannot divide by zero!")
+
+print("### Welcome to Vishnu's Calculator ###")
+c = Calculator()
+
+while True:
+    operator = input("Enter operation [+|-|*|/] or 'q' to quit: ")
+    if operator.lower() == 'q':
+        print("Thanks for using the calculator!")
+        break
+    try:
+        value = float(input("Enter a value: "))
+        if operator == "+":
+            c.addition(value)
+        elif operator == "-":
+            c.subtraction(value)
+        elif operator == "*":
+            c.multiplication(value)
+        elif operator == "/":
+            c.division(value)
+        else:
+            print("X Invalid operator!")
+    except ValueError:
+        print("!!! Please enter a valid number!!!")
