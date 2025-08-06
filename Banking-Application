@@ -1,0 +1,100 @@
+#banking application
+import random
+class Bank:
+    bankname="SBI - State Bank Of India"
+    print("Welcome to SBI Start to Create Your Account:-")
+    Account=[]
+    balance=0
+    accono=0
+    def __init__(self,balance=0,accono=0):
+        self.balance=balance
+        self.accono=accono
+    def create(self):
+        person={}
+        self.name=input("Enter your Name:")
+        person["Accountent Name"]=self.name 
+        while True:
+            self.phone=input("Enter your Phone no:")
+            if len(self.phone)==10:
+                person["Phone No"]=int(self.phone)
+                break
+            else:
+                print("Pls Enter Valid Phone Number...")
+        while True:
+            self.aathar=input("Enter Aathar Number:")
+            if len(self.aathar)==12:
+                person["Aathar no"]=int(self.aathar)
+                break
+            else:
+                print("Pls Enter Valid Aathar number...")
+        account=random.randint(100000000000,999999999999)
+        self.accountno=account
+        person["Account No"]=self.accountno
+        while True:
+            print("Pls Want to know Acoount Type[Current| Zero]:")
+            typee=input("Enter type of Account:")
+            if typee.lower()=="current":
+                print("Thank You choosing Current Account:")
+                while True:
+                    self.amount=float(input("Enter Minimum Amount:"))
+                    if int(self.amount)>=500:
+                        person["Balance"]=self.amount
+                        break
+                    else:
+                        print("Please Enter a amount less than 500 Rupee only")
+                break
+            elif typee.lower()=="zero":
+                print("Thank You choosing Zero-Account:")
+                self.amount=0.0
+                person["Balance"]=self.amount
+                break
+            else:
+                print("Pls Enter valid option")
+        
+        self.Account.append(person)  
+        print("Your Account Was Created Successully...")
+        print("*"*15,"Thank You","*"*15)
+        
+        self.balance=person.get("Balance")
+        self.accono=person.get("Account No")
+    def diposit(self,amount):
+        self.amount=amount
+        if self.amount>0:
+            self.balance=self.balance+amount
+            print("Current Balance in your Account:",self.balance)
+    def withdrawal(self,amount):
+        self.amount=amount
+        if amount<=self.balance:
+            self.balance=self.balance-amount
+            print("Current Balance in your Account:",self.balance)
+        else:
+            print("insufficient balance so we can't perform this operation")
+            print("if you want to continue enter amount below",self.balance)  
+obj=Bank()
+while True:
+    option=int(input("Enter [1] if u want to creat Accounts\nEnter[0] if u want to exit:"))
+    if option==1:
+        print("Thank you for your Intrest..")
+        obj.create()
+        print(obj.Account)
+    elif option ==0:
+        break
+    else:
+        print("Pls Enter valid options[0|1]")
+    while True:
+        print("D - Diposit\nW - Withdrawal\nE - Exit")
+        option=input("Please choose your option:")
+        if option.lower()=="d":
+            amount=float(input("Enter to Diposit Amount:-"))
+            obj.diposit(amount)
+            
+        elif option.lower()=="w":
+            amount=float(input("Enter to Withdrawal Amount:-"))
+            obj.withdrawal(amount)
+            
+        elif option.lower()=="e":
+            print("Thank you for Using",Bank.bankname)
+            break
+        else:
+            print("Invalid Option......Plase Choose Valid Option For Continue Transaction")
+    
