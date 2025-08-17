@@ -1,0 +1,66 @@
+# Base Class
+class Pet:
+    def __init__(self, name, age, pet_type):
+        self.__name = name      # private
+        self.__age = age        # private
+        self.__type = pet_type  # private
+
+    # Getters
+    def get_name(self):
+        return self.__name
+
+    def get_age(self):
+        return self.__age
+
+    def get_type(self):
+        return self.__type
+
+    # Setters
+    def set_age(self, age):
+        if age > 0:
+            self.__age = age
+        else:
+            print("Invalid age!")
+
+    def show_info(self):
+        print(f"{self.__name} ({self.__type}), Age: {self.__age}")
+
+
+# Child Classes
+class Dog(Pet):
+    def __init__(self, name, age, breed):
+        super().__init__(name, age, "Dog")
+        self.__breed = breed
+
+    def bark(self):
+        print(f"{self.get_name()} is barking! 🐶")
+
+    def show_info(self):
+        super().show_info()
+        print(f"Breed: {self.__breed}")
+
+
+class Cat(Pet):
+    def __init__(self, name, age, color):
+        super().__init__(name, age, "Cat")
+        self.__color = color
+
+    def meow(self):
+        print(f"{self.get_name()} says Meow! 🐱")
+
+    def show_info(self):
+        super().show_info()
+        print(f"Color: {self.__color}")
+
+
+# Usage
+dog1 = Dog("Buddy", 3, "Golden Retriever")
+cat1 = Cat("Whiskers", 2, "White")
+
+dog1.show_info()
+dog1.bark()
+
+print("----")
+
+cat1.show_info()
+cat1.meow()
